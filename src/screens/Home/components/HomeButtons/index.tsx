@@ -1,6 +1,6 @@
-import React, {FC} from 'react';
-import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
-import {all, HeaderState, near} from '../..';
+import React, { FC } from 'react';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { all, HeaderState, near } from '../constants';
 
 type Props = {
   /** Cостояние шапки all | near */
@@ -13,7 +13,7 @@ type Props = {
  * Компонент-контейнер кнопок на странице Home
  * @param Props
  * */
-export const HomeButtons: FC<Props> = ({setHeaderState}) => {
+export const HomeButtons: FC<Props> = ({ setHeaderState }) => {
   return (
     <View style={styles.topToolsContainer}>
       <View style={styles.homeButtonContainer}>
@@ -32,7 +32,7 @@ export const HomeButtons: FC<Props> = ({setHeaderState}) => {
             setHeaderState(near);
           }}
         >
-          <Text style={{alignSelf: 'center', fontSize: 13}}>Поблизости</Text>
+          <Text style={{ alignSelf: 'center', fontSize: 13 }}>Поблизости</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -1,15 +1,15 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
-import {Card} from '../Card';
-import {IAttraction} from '../../../../mock-data';
+import { ScrollView, View } from 'react-native';
+import { Card } from '../Card';
+import { IAttraction } from '../../../../mock-data';
 
 /**
  * Компонент-контейнер для отрисовки списка достопримечательностей
  * @param IAttraction[]
  */
-export const HomeContent = ({result}: {result: IAttraction[]}) => {
+export const HomeContent = ({ result }: { result: IAttraction[] }) => {
   return (
-    <ScrollView style={{alignContent: 'center'}}>
+    <ScrollView style={{ alignContent: 'center' }}>
       <View
         style={{
           flexDirection: 'row',
@@ -20,6 +20,7 @@ export const HomeContent = ({result}: {result: IAttraction[]}) => {
       >
         {result.map((i: IAttraction) => (
           <Card
+            key={i.id}
             path={i.path}
             name={i.name}
             founded={i.founded}

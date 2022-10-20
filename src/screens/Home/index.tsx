@@ -1,20 +1,17 @@
-import React, {FC, useContext, useMemo, useState} from 'react';
-import {View, StyleSheet, TextInput} from 'react-native';
-import {attractions, IAttraction} from '../../mock-data';
-import {Header} from '../../components/Header';
-import {HomeButtons} from './components/HomeButtons';
-import {HomeContent} from './components/HomeContent';
-import {GeoContext} from '../../../helpers/context';
-
-export const all = 'all';
-export const near = 'near';
-export type HeaderState = typeof all | typeof near;
+import React, { FC, useContext, useMemo, useState } from 'react';
+import { View, StyleSheet, TextInput } from 'react-native';
+import { attractions, IAttraction } from '../../mock-data';
+import { Header } from '../../components/Header';
+import { HomeButtons } from './components/HomeButtons';
+import { HomeContent } from './components/HomeContent';
+import { GeoContext } from '../../../helpers/context';
+import { all, HeaderState } from './components/constants';
 
 /**
  * Компонент Home - вкладка Home на главном экране
  */
 export const Home: FC = () => {
-  const {myLocation} = useContext(GeoContext);
+  const { myLocation } = useContext(GeoContext);
   const [headerState, setHeaderState] = useState<HeaderState>(all);
   const [inputValue, setInputValue] = useState<string>('');
 
