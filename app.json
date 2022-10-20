@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Attractions",
+    "slug": "Attractions",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/pictures/hm.png",
+    "splash": {
+      "image": "./assets/pictures/hm.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIBackgroundModes": ["location", "processing"]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/pictures/hm.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/pictures/hm.png"
+    }
+  }
+}
