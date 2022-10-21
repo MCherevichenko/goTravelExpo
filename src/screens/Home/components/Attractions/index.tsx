@@ -51,7 +51,6 @@ export const Attraction: FC<IAttractionProps> = ({
   street,
   coordinate,
 }) => {
-  console.log('ПУТЬ:', picture);
   return (
     <Modal visible={isOpen}>
       <View style={styles.modalContainer}>

@@ -51,7 +51,6 @@ export class BackgroundImage {
     },
   ];
   static GetImage = (name: string) => {
-    console.log(name);
     const found = BackgroundImage.images.find(
       (e) => e.name === name.split('/').pop(),
     );
