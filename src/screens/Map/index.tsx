@@ -2,8 +2,8 @@ import React, { memo, useContext, useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { Header } from '../../components/Header';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
-import { attractions } from '../../mock-data';
 import { GeoContext } from '../../../helpers/context';
+import { Location } from '../Home/components/constants';
 
 /**
  * Компонент Map - вкладка Map на главном экране
@@ -11,6 +11,20 @@ import { GeoContext } from '../../../helpers/context';
 export const Map = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
   const { setMyLocation, myLocation } = useContext(GeoContext);
+  const [locations, setLocations] = useState<Location[]>([]);
+  const getLocations = async () => {
+    try {
+      const response = await fetch('http://80.249.149.14:5000/api/location');
+      const data = await response.json();
+      setLocations(data.locations);
+    } catch (error) {
+      console.error('Ошибка в функции getLocations', error);
+    }
+  };
+
+  useEffect(() => {
+    getLocations();
+  }, []);
 
   return (
     <>
@@ -36,13 +50,16 @@ export const Map = memo(() => {
             }}
           />
 
-          {attractions.map((attraction) => {
+          {locations.map((attraction) => {
             return (
               <TouchableOpacity key={attraction.id}>
                 <Marker
                   description={`${attraction.street}`}
                   title={`${attraction.name}`}
-                  coordinate={attraction.coordinate}
+                  coordinate={{
+                    longitude: attraction.longitude,
+                    latitude: attraction.latitude,
+                  }}
                   onPress={() => setIsOpen}
                   key={attraction.id}
                 />

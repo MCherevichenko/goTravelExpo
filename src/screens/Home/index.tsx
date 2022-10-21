@@ -25,7 +25,7 @@ export const Home: FC = () => {
       const data = await response.json();
       setLocations(data.locations);
     } catch (error) {
-      console.error(error);
+      console.error('Ошибка в функции getLocations',error);
     }
   };
 
