@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, { FC, useState } from 'react';
 import {
   Text,
   ImageBackground,
@@ -6,29 +6,32 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import {Attraction} from '../Attractions';
-import {IAttraction} from '../../../../mock-data';
+import { BackgroundImage } from '../../../Other/Image';
+import { Attraction } from '../Attractions';
+import { Location } from '../constants';
 
 /**
  * Компонент карточки достопримечательности в списке
  * @param IAttraction
  */
-export const Card: FC<IAttraction> = ({
-  path,
+export const Card: FC<Location> = ({
+  picture,
   name,
   id,
   founded,
   description,
   street,
-  coordinate,
+  longitude,
+  latitude,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const img = BackgroundImage.GetImage(`${picture}`);
 
   return (
     <>
       <View style={styles.cardContainer}>
         <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
-          <ImageBackground source={path} style={styles.cardImage}>
+          <ImageBackground source={Number(picture)} style={styles.cardImage}>
             <Text style={styles.cardName}>{name}</Text>
           </ImageBackground>
         </TouchableOpacity>
@@ -37,13 +40,13 @@ export const Card: FC<IAttraction> = ({
       <Attraction
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        path={path}
+        picture={picture}
         name={name}
         founded={founded}
         description={description}
         id={id}
         street={street}
-        coordinate={coordinate}
+        coordinate={{ latitude, longitude }}
       />
     </>
   );

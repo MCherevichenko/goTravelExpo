@@ -1,23 +1,23 @@
-import React, {memo, useContext, useState, useEffect} from 'react';
-import MapView, {Marker} from 'react-native-maps';
-import {Header} from '../../components/Header';
-import {SafeAreaView, TouchableOpacity} from 'react-native';
-import {attractions} from '../../mock-data';
-import {GeoContext} from '../../../helpers/context';
+import React, { memo, useContext, useState, useEffect } from 'react';
+import MapView, { Marker } from 'react-native-maps';
+import { Header } from '../../components/Header';
+import { SafeAreaView, TouchableOpacity } from 'react-native';
+import { attractions } from '../../mock-data';
+import { GeoContext } from '../../../helpers/context';
 
 /**
  * Компонент Map - вкладка Map на главном экране
  */
 export const Map = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
-  const {setMyLocation, myLocation} = useContext(GeoContext);
+  const { setMyLocation, myLocation } = useContext(GeoContext);
 
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <Header />
         <MapView
-          style={{flex: 1}}
+          style={{ flex: 1 }}
           initialRegion={{
             latitude: 47.23617,
             longitude: 38.89688,
@@ -51,17 +51,6 @@ export const Map = memo(() => {
           })}
         </MapView>
       </SafeAreaView>
-
-      {/* <Attraction
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        path={props.path}
-        name={props.name}
-        founded={props.founded}
-        description={props.description}
-        id={props.id}
-        street={props.street}
-      /> */}
     </>
   );
 });

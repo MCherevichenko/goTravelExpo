@@ -1,4 +1,5 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
+
 import {
   Image,
   Modal,
@@ -8,7 +9,7 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
-import {Footer} from '../../../../components/Footer';
+import { Footer } from '../../../../components/Footer';
 
 type IAttractionProps = {
   /** Флаг открытия модального окна */
@@ -16,7 +17,7 @@ type IAttractionProps = {
   /** Функция, срабатывающая при закрытии */
   onClose: () => void;
   /** Картинка */
-  path: number;
+  picture: number;
   /** Название достопримечательности */
   name: string;
   /** Описание достопримечательности */
@@ -27,7 +28,6 @@ type IAttractionProps = {
   founded: number;
   /** Улица, на которой расположена достопримечательность */
   street: string;
-  /** координаты достопримечательности */
   coordinate: {
     /** широта */
     latitude: number;
@@ -43,7 +43,7 @@ type IAttractionProps = {
 export const Attraction: FC<IAttractionProps> = ({
   isOpen,
   onClose,
-  path,
+  picture,
   name,
   id,
   founded,
@@ -51,6 +51,7 @@ export const Attraction: FC<IAttractionProps> = ({
   street,
   coordinate,
 }) => {
+  console.log('ПУТЬ:', picture);
   return (
     <Modal visible={isOpen}>
       <View style={styles.modalContainer}>
@@ -60,14 +61,14 @@ export const Attraction: FC<IAttractionProps> = ({
         >
           <Text style={styles.backButton}>Back</Text>
         </TouchableOpacity>
-        <Image source={path} style={styles.attractionPicture} />
-        <View style={{alignItems: 'center'}}>
+        <Image source={Number(picture)} style={styles.attractionPicture} />
+        <View style={{ alignItems: 'center' }}>
           <Text style={styles.attractionFounded}>
             Год основания - {founded}
           </Text>
-          <Text style={{marginBottom: 4}}>Расположение: {street}</Text>
+          <Text style={{ marginBottom: 4 }}>Расположение: {street}</Text>
         </View>
-        <ScrollView style={{borderWidth: 2, borderColor: 'black'}}>
+        <ScrollView style={{ borderWidth: 2, borderColor: 'black' }}>
           <Text style={styles.attractionDescription}>{description}</Text>
         </ScrollView>
       </View>

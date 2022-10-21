@@ -1,13 +1,14 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
+import { BackgroundImage } from '../../../Other/Image';
 import { Card } from '../Card';
-import { IAttraction } from '../../../../mock-data';
+import { Location } from '../constants';
 
 /**
  * Компонент-контейнер для отрисовки списка достопримечательностей
  * @param IAttraction[]
  */
-export const HomeContent = ({ result }: { result: IAttraction[] }) => {
+export const HomeContent = ({ result }: { result: Location[] | string }) => {
   return (
     <ScrollView style={{ alignContent: 'center' }}>
       <View
@@ -18,18 +19,23 @@ export const HomeContent = ({ result }: { result: IAttraction[] }) => {
           paddingHorizontal: 4,
         }}
       >
-        {result.map((i: IAttraction) => (
-          <Card
-            key={i.id}
-            path={i.path}
-            name={i.name}
-            founded={i.founded}
-            description={i.description}
-            id={i.id}
-            street={i.street}
-            coordinate={i.coordinate}
-          />
-        ))}
+        {Array.isArray(result) ? (
+          result.map((i: Location) => (
+            <Card
+              key={i.id}
+              picture={BackgroundImage.GetImage(`${i.picture}`)}
+              name={i.name}
+              founded={i.founded}
+              description={i.description}
+              id={i.id}
+              street={i.street}
+              longitude={i.longitude}
+              latitude={i.latitude}
+            />
+          ))
+        ) : (
+          <p>{result}</p>
+        )}
       </View>
     </ScrollView>
   );
